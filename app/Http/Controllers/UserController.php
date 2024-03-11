@@ -9,9 +9,9 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     public function index() {
-        $user = UserModel::all();
-        return view('user', ['data' => $user]);
-    }
+        $users = UserModel::with('level')->get();
+        return view('user', ['data' => $users]);
+    }    
 
     public function tambah() {
         return view('user_tambah');
