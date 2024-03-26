@@ -19,19 +19,22 @@ class KategoriDataTable extends DataTable
      *
      * @param QueryBuilder $query Results from query() method.
      */
-    public function dataTable(QueryBuilder $query): EloquentDataTable
-    {
-        return (new EloquentDataTable($query))
-        ->addColumn('action', function($id){
-            $edit = route('/kategori/edit', $id);
-            $delete = route('/kategori/delete', $id); 
-            return '
-            <a href="' . $edit . '" class="btn btn-warning btn-sm">Edit</a>
-            <a href="' . $delete . '" class="btn btn-danger btn-sm">Delete</a>
-            ';
-        })
-            ->setRowId('id');
-    }
+
+     public function dataTable(QueryBuilder $query): EloquentDataTable
+     {
+         return (new EloquentDataTable($query))
+             ->addColumn('action', function($kategori) {
+                 return '<a href="' . route('kategori.edit', ['id' => $kategori->kategori_id]) . '" class="btn btn-primary mr-2">
+                             <i class="fa fa-pencil-alt" style="color: white; font-size: 12px;"></i>
+                         </a>'.
+                         '<a href="' . route('kategori.delete', ['id' => $kategori->kategori_id]) . '" class="btn btn-danger" onclick="return confirm(\'Are you sure want to delete?\')">
+                             <i class="fa fa-trash" style="color: white; font-size: 12px;"></i>
+                         </a>';
+             })
+             ->rawColumns(['action'])
+             ->setRowId('id');
+     }
+     
 
     /**
      * Get the query source of dataTable.
@@ -80,6 +83,11 @@ class KategoriDataTable extends DataTable
             Column::make('kategori_nama'),
             Column::make('created_at'),
             Column::make('updated_at'),
+            Column::computed('action')
+                ->exportable(false)
+                ->printable(false)
+                ->width(100)
+                ->addClass('text-center')
         ];
     }
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\UserModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\RedirectResponse;
 
 class UserController extends Controller
 {
@@ -17,13 +18,23 @@ class UserController extends Controller
         return view('user_tambah');
     }
 
-    public function tambah_simpan(Request $request) {
+    public function tambah_simpan(Request $request): RedirectResponse {
+        //validasi
+        $validated = $request->validate([
+            'username' => 'required|unique:m_user|max:255',
+            'nama' => 'required',
+            'password' => 'required',
+            'level_id' => 'required',
+        ]);
+    
+        //store
         UserModel::create([
             'username' => $request->username,
             'nama' => $request->nama,
-            'password' => Hash::make($request->username),
+            'password' => Hash::make($request->password),
             'level_id' => $request->level_id,
         ]);
+    
         return redirect('/user');
     }
 
@@ -35,12 +46,12 @@ class UserController extends Controller
     public function ubah_simpan($id, Request $request) {
         $user = UserModel::find($id);
         
-            $user->username = $request->username;
-            $user->nama = $request->nama;
-            $user->password = Hash::make('$request->password');
-            $user->level_id = $request->level_id;
+        $user->username = $request->username;
+        $user->nama = $request->nama;
+        $user->password = Hash::make($request->password); // Perubahan di sini
+        $user->level_id = $request->level_id;
         
-            $user->save();
+        $user->save();
 
         return redirect('/user');
     }
