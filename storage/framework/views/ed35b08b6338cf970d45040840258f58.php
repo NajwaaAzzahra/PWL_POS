@@ -1,48 +1,66 @@
 
 
-
-<?php $__env->startSection('subtitle', 'Kategori'); ?>
-<?php $__env->startSection('content_header_title', 'Kategori'); ?>
-<?php $__env->startSection('content_header_subtitle', 'Create'); ?>
-
-
 <?php $__env->startSection('content'); ?>
-<div class="container">
-    <div class="card card-primary">
-        <div class="card-header">
-            <div class="card-title">Buat kategori baru</div>
-        </div>
-
-        <form action="../kategori" method="post">
-            <?php echo csrf_field(); ?> 
-
-            <div class="card-body">
-                <div class="form-group">
-                    <label for="kodeKategori">Kode Kategori</label>
-                    <input type="text" name="kategori_kode" id="kodeKategori" class="form-control" placeholder="Masukkan Kode Kategori">
-                </div>
-                <div class="form-group">
-                    <label for="namaKategori">Nama Kategori</label>
-                    <input type="text" name="kategori_nama" id="namaKategori" class="form-control" placeholder="Masukkan Nama Kategori">
+<div class="card card-outline card-primary">
+    <div class="card-header">
+        <h3 class="card-title"><?php echo e($page->title); ?></h3>
+        <div class="card-tools"></div>
+    </div>
+    <div class="card-body">
+        <form method="POST" action="<?php echo e(url('kategori')); ?>" class="form-horizontal">
+            <?php echo csrf_field(); ?>
+            
+            <div class="form-group row">
+                <label class="col-2 control-label col-form-label">Kode Kategori</label>
+                <div class="col-10">
+                    <input type="text" class="form-control" id="kategori_kode" name="kategori_kode" value="<?php echo e(old('kategori_kode')); ?>" required>
+                    <?php $__errorArgs = ['kategori_kode'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                    <small class="form-text text-danger"><?php echo e($message); ?></small>
+                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                 </div>
             </div>
-
-            <div class="card-footer">
-                <button type="submit" class="btn btn-primary">Submit</button>
+            <div class="form-group row">
+                <label class="col-2 control-label col-form-label">Nama Kategori</label>
+                <div class="col-10">
+                    <input type="text" class="form-control" id="kategori_nama" name="kategori_nama" value="<?php echo e(old('kategori_nama')); ?>" required>
+                    <?php $__errorArgs = ['kategori_nama'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                    <small class="form-text text-danger"><?php echo e($message); ?></small>
+                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                </div>
+            </div>
+           
+            <div class="form-group row">
+                <label class="col-2 control-label col-form-label"></label>
+                <div class="col-10">
+                    <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
+                    <a class="btn btn-sm btn-default ml-1" href="<?php echo e(url('kategori')); ?>">Kembali</a>
+                </div>
             </div>
         </form>
     </div>
-
-     
-     <?php if($errors->any()): ?>
-     <div class="alert alert-danger">
-         <ul>
-             <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                 <li><?php echo e($error); ?></li>
-             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-         </ul>
-     </div>
- <?php endif; ?>
 </div>
 <?php $__env->stopSection(); ?>
-<?php echo $__env->make('layout.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\PWL_POS\resources\views/kategori/create.blade.php ENDPATH**/ ?>
+
+<?php $__env->startPush('css'); ?>
+    <!-- CSS Tambahan -->
+<?php $__env->stopPush(); ?>
+
+<?php $__env->startPush('js'); ?>
+    <!-- JS Tambahan -->
+<?php $__env->stopPush(); ?>
+
+<?php echo $__env->make('layouts.template', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\PWL_POS\resources\views/kategori/create.blade.php ENDPATH**/ ?>
