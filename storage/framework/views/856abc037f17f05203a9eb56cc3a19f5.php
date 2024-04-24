@@ -21,7 +21,7 @@
                     <label class="col-1 control-label col-form-label">Level</label>
                     <div class="col-11">
                         <select class="form-control" id="level_id" name="level_id" required>
-                            <option value="">- Pilih Level -</option> 
+                             
                             <?php $__currentLoopData = $level; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <option value="<?php echo e($item->level_id); ?>" <?php if($item->level_id == $user->level_id): ?> selected <?php endif; ?>>
                                     <?php echo e($item->level_nama); ?>

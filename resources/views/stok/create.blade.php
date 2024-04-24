@@ -13,7 +13,7 @@
                 <label class="col-1 control-label col-form-label">Barang</label>
                 <div class="col-11">
                     <select class="form-control" id="barang_id" name="barang_id" required>
-                        <option value="">- Pilih Barang -</option>
+                        
                         @foreach($barang as $item)
                         <option value="{{ $item->barang_id }}">{{ $item->barang_nama }}</option>
                         @endforeach
@@ -27,7 +27,7 @@
                 <label class="col-1 control-label col-form-label">User</label>
                 <div class="col-11">
                     <select class="form-control" id="user_id" name="user_id" required>
-                        <option value="">- Pilih User -</option>
+                       
                         @foreach($user as $item)
                         <option value="{{ $item->user_id }}">{{ $item->nama }}</option>
                         @endforeach

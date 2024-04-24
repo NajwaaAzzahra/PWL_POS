@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class Cek_login
 {
-    /**
+    /** 
      * Handle an incoming request.
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next

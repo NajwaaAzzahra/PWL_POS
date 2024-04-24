@@ -21,7 +21,7 @@
                     <label class="col-2 control-label col-form-label">Kategori</label>
                     <div class="col-10">
                         <select class="form-control" id="kategori_id" name="kategori_id" required>
-                            <option value="">- Pilih Kategori -</option>
+                            
                             <?php $__currentLoopData = $kategori; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <option value="<?php echo e($item->kategori_id); ?>" <?php if($item->kategori_id == $barang->kategori_id): ?> selected <?php endif; ?>>
                                 <?php echo e($item->kategori_nama); ?></option>

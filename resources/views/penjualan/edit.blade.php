@@ -21,7 +21,7 @@
                     <label class="col-2 control-label col-form-label">User</label>
                     <div class="col-10">
                         <select class="form-control" id="user_id" name="user_id" required>
-                            <option value="">- Pilih User -</option>
+                            
                             @foreach($user as $item)
                             <option value="{{ $item->user_id }}" @if($item->user_id == $penjualan->user_id) selected @endif>
                                 {{ $item->nama }}</option>

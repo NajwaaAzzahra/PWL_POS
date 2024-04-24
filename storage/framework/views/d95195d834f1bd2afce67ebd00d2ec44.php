@@ -21,7 +21,7 @@
                     <label class="col-1 control-label col-form-label">Barang</label>
                     <div class="col-11">
                         <select class="form-control" id="barang_id" name="barang_id" required>
-                            <option value="">- Pilih Barang -</option>
+                            
                             <?php $__currentLoopData = $barang; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <option value="<?php echo e($item->barang_id); ?>" <?php if($item->barang_id == $stok->barang_id): ?> selected <?php endif; ?>>
                                 <?php echo e($item->barang_nama); ?></option>
@@ -43,7 +43,7 @@ unset($__errorArgs, $__bag); ?>
                     <label class="col-1 control-label col-form-label">User</label>
                     <div class="col-11">
                         <select class="form-control" id="user_id" name="user_id" required>
-                            <option value="">- Pilih User -</option>
+                           
                             <?php $__currentLoopData = $user; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <option value="<?php echo e($item->user_id); ?>"<?php if($item->user_id == $stok->user_id): ?> selected <?php endif; ?>
                                 ><?php echo e($item->nama); ?></option>

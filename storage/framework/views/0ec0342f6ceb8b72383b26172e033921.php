@@ -11,7 +11,7 @@
             <?php echo csrf_field(); ?>
             
             <div class="form-group row">
-                <label class="col-2 control-label col-form-label">Kode Kategori</label>
+                <label class="col-2 control-label col-form-label">Kode Level</label>
                 <div class="col-10">
                     <input type="text" class="form-control" id="level_kode" name="level_kode" value="<?php echo e(old('level_kode')); ?>" required>
                     <?php $__errorArgs = ['level_kode'];
@@ -27,7 +27,7 @@ unset($__errorArgs, $__bag); ?>
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-2 control-label col-form-label">Nama Kategori</label>
+                <label class="col-2 control-label col-form-label">Nama Level</label>
                 <div class="col-10">
                     <input type="text" class="form-control" id="level_nama" name="level_nama" value="<?php echo e(old('level_nama')); ?>" required>
                     <?php $__errorArgs = ['level_nama'];
