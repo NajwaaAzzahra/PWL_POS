@@ -161,4 +161,6 @@ class PenjualanController extends Controller
             return redirect('/penjualan')->with('error', 'Data penjualan gagal dihapus karena masih terdapat tabel lain yang terkait dengan data ini');
         }
     }
+
+    
 }
