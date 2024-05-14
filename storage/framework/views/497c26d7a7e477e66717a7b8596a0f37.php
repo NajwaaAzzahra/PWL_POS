@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('content'); ?>
 <div class="card card-outline card-primary">
     <div class="card-header">
@@ -32,6 +30,10 @@
             <tr>
                 <th>Password</th>
                 <td>********</td>
+            </tr>
+            <tr>
+                <th>Gambar</th>
+                <td><img src="<?php echo e($user->image); ?>" alt=""></td>
             </tr>
         </table>
         <?php endif; ?>

@@ -145,7 +145,7 @@ class BarangController extends Controller
             'barang_kode' => $request->barang_kode, 
             'barang_nama' => $request->barang_nama, 
             'harga_beli' => $request->harga_beli,
-            'harga_jual' => $request->harga_jual
+            'harga_jual' => $request->harga_jual,
         ]);
     
         return redirect('/barang')->with('success', 'Data barang berhasil diubah'); 

@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('content'); ?>
 <div class="card card-outline card-primary">
     <div class="card-header">
@@ -14,7 +12,7 @@
             </div>
             <a href="<?php echo e(url('user')); ?>" class="btn btn-sm btn-default mt-2">Kembali</a>
         <?php else: ?>
-            <form method="POST" action="<?php echo e(url('/user/'.$user->user_id)); ?>" class="form-horizontal">
+            <form method="POST" action="<?php echo e(url('/user/'.$user->user_id)); ?>" class="form-horizontal" enctype="multipart/form-data">
                 <?php echo csrf_field(); ?>
                 <?php echo method_field('PUT'); ?> <!-- Add this line for edit process requiring PUT method -->
                 <div class="form-group row">
@@ -85,6 +83,23 @@ $message = $__bag->first($__errorArgs[0]); ?>
                             <small class="form-text text-danger"><?php echo e($message); ?></small>
                         <?php else: ?>
                             <small class="form-text text-muted">Abaikan (jangan diisi) jika tidak ingin mengganti password user.</small>
+                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-1 control-label col-form-label">Gambar</label>
+                    <div class="col-11">
+                        <input type="file" class="form-control" id="image" name="image" value="<?php echo e(old('image', $user->image)); ?>"
+                            required>
+                        <?php $__errorArgs = ['image'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                            <small class="form-text text-danger"><?php echo e($message); ?></small>
                         <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;

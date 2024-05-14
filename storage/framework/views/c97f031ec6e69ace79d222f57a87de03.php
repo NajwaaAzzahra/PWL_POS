@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('content'); ?>
 <div class="card card-outline card-primary">
     <div class="card-header">
@@ -7,7 +5,7 @@
         <div class="card-tools"></div>
     </div>
     <div class="card-body">
-        <form method="POST" action="<?php echo e(url('barang')); ?>" class="form-horizontal">
+        <form method="POST" action="<?php echo e(url('barang')); ?>" class="form-horizontal" enctype="multipart/form-data">
             <?php echo csrf_field(); ?>
             <div class="form-group row">
                 <label class="col-2 control-label col-form-label">Kategori</label>
@@ -94,7 +92,23 @@ endif;
 unset($__errorArgs, $__bag); ?>
                 </div>
             </div>
-            
+            <div class="form-group row">
+                <label class="col-2 control-label col-form-label">Gambar</label>
+                <div class="col-10">
+                    <input type="file" class="form-control" id="berkas" name="berkas" value="<?php echo e(old('berkas')); ?>"
+                        required>
+                    <?php $__errorArgs = ['berkas'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                        <small class="form-text text-danger"><?php echo e($message); ?></small>
+                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                </div>
+            </div>
             <div class="form-group row">
                 <label class="col-2 control-label col-form-label"></label>
                 <div class="col-10">

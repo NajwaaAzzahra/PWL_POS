@@ -39,9 +39,10 @@ class UserModel extends Authenticatable implements JWTSubject
         return $this->hasMany(StokModel::class, 'user_id', 'user_id');
     }
 
-    protected function image(): Attribute {
-        return new Attribute(
-            get: fn ($image) => url('/storage/posts/' . $image),
-        );
-    }
+    //di command soalnya biar bisa lihat detail image
+    // protected function image(): Attribute {
+    //     return new Attribute(
+    //         get: fn ($image) => url('/storage/posts/' . $image),
+    //     );
+    // }
 }

@@ -77,14 +77,24 @@ class UserController extends Controller
             'username' => 'required|string|min:3|unique:m_user,username',  //username harus diisi, berupa string, minimal 3 karakter, dan bernilai unik di tabel m_user kolom username
             'nama' => 'required|string|max:100', //nama harus diisi berupa string dan maksimal 100 karakter
             'password' => 'required|min:5', //password harus diisi dan minimal 5 karakter
-            'level_id' => 'required|integer' //level_id harus diisi berupa angka
+            'level_id' => 'required|integer', //level_id harus diisi berupa angka
+            'image' => 'required' 
         ]);
+
+                 // Get file extension
+                $extFile = $request->image->extension();
+                $nama = $request->kode . " - " . $request->nama . ".$extFile";
+                // Pindahkan gambar ke folder
+                $path = $request->image->move('gambar', $nama);
+                $path = str_replace("\\", "//", $path);
+                $pathBaru = asset('gambar/' . $nama);
     
         UserModel::create([
             'username' => $request->username,
             'nama' => $request->nama,
             'password' => bcrypt($request->password), //password dienkripsi sebelum disimpan
-            'level_id' => $request->level_id
+            'level_id' => $request->level_id,
+            'image' => $pathBaru
         ]);
     
         return redirect('/user')->with('success', 'Data user berhasil disimpan'); 
@@ -133,14 +143,24 @@ class UserController extends Controller
             'username' => 'required|string|min:3|unique:m_user,username,' . $id . ',user_id',
             'nama' => 'required|string|max:100',
             'password' => 'required|min:5',
-            'level_id' => 'required|integer'
+            'level_id' => 'required|integer',
+            'image' => 'required'
         ]);
+
+                 // Get file extension
+                 $extFile = $request->image->extension();
+                 $nama = $request->kode . " - " . $request->nama . ".$extFile";
+                 // Pindahkan gambar ke folder
+                 $path = $request->image->move('gambar', $nama);
+                 $path = str_replace("\\", "//", $path);
+                 $pathBaru = asset('gambar/' . $nama);
 
         UserModel::find($id)->update([
             'username' => $request->username,
             'nama' => $request->nama,
             'password' => $request->password ? bcrypt($request->password) : UserModel::find($id)->password, //password dienkripsi sebelum disimpan
-            'level_id' => $request->level_id
+            'level_id' => $request->level_id,
+            'image' => $pathBaru
         ]);
     
         return redirect('/user')->with('success', 'Data user berhasil diubah'); 

@@ -7,7 +7,7 @@
         <div class="card-tools"></div>
     </div>
     <div class="card-body">
-        <form method="POST" action="{{ url('barang') }}" class="form-horizontal">
+        <form method="POST" action="{{ url('barang') }}" class="form-horizontal" enctype="multipart/form-data">
             @csrf
             <div class="form-group row">
                 <label class="col-2 control-label col-form-label">Kategori</label>
@@ -58,8 +58,6 @@
                         <small class="form-text text-danger">{{ $message }}</small>
                     @enderror
                 </div>
-            </div>
-            
             <div class="form-group row">
                 <label class="col-2 control-label col-form-label"></label>
                 <div class="col-10">

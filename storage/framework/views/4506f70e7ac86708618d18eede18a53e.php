@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('content'); ?>
 <div class="card card-outline card-primary">
     <div class="card-header">
